@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7836CBDA1DB7AB0700F72BF5 /* StreamSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7836CBD81DB7AB0700F72BF5 /* StreamSelectorController.swift */; settings = {ASSET_TAGS = (); }; };
-		7836CBDB1DB7AB0700F72BF5 /* StreamSelectorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7836CBD91DB7AB0700F72BF5 /* StreamSelectorController.xib */; settings = {ASSET_TAGS = (); }; };
+		780F582C1DB7B9850062536D /* StreamSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F582A1DB7B9850062536D /* StreamSelectorController.swift */; settings = {ASSET_TAGS = (); }; };
+		780F582D1DB7B9850062536D /* StreamSelectorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 780F582B1DB7B9850062536D /* StreamSelectorController.xib */; settings = {ASSET_TAGS = (); }; };
 		789BE1741DB3FF5D003BC652 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789BE1721DB3FF5D003BC652 /* MainViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		789BE1751DB3FF5D003BC652 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 789BE1731DB3FF5D003BC652 /* MainViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		78F47F641DB3AC7C00C43385 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F47F631DB3AC7C00C43385 /* AppDelegate.swift */; };
@@ -18,8 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7836CBD81DB7AB0700F72BF5 /* StreamSelectorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StreamSelectorController.swift; path = ../StreamSelectorController.swift; sourceTree = "<group>"; };
-		7836CBD91DB7AB0700F72BF5 /* StreamSelectorController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StreamSelectorController.xib; path = ../StreamSelectorController.xib; sourceTree = "<group>"; };
+		780F582A1DB7B9850062536D /* StreamSelectorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamSelectorController.swift; sourceTree = "<group>"; };
+		780F582B1DB7B9850062536D /* StreamSelectorController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StreamSelectorController.xib; sourceTree = "<group>"; };
 		789BE1721DB3FF5D003BC652 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		789BE1731DB3FF5D003BC652 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		78F47F601DB3AC7C00C43385 /* Live stream checker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Live stream checker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,11 +64,11 @@
 				78F47F631DB3AC7C00C43385 /* AppDelegate.swift */,
 				789BE1721DB3FF5D003BC652 /* MainViewController.swift */,
 				789BE1731DB3FF5D003BC652 /* MainViewController.xib */,
-				7836CBD81DB7AB0700F72BF5 /* StreamSelectorController.swift */,
-				7836CBD91DB7AB0700F72BF5 /* StreamSelectorController.xib */,
 				78F47F651DB3AC7C00C43385 /* Assets.xcassets */,
 				78F47F671DB3AC7C00C43385 /* MainMenu.xib */,
 				78F47F6A1DB3AC7C00C43385 /* Info.plist */,
+				780F582A1DB7B9850062536D /* StreamSelectorController.swift */,
+				780F582B1DB7B9850062536D /* StreamSelectorController.xib */,
 			);
 			path = "Live stream checker";
 			sourceTree = "<group>";
@@ -134,7 +134,7 @@
 				789BE1751DB3FF5D003BC652 /* MainViewController.xib in Resources */,
 				78F47F661DB3AC7C00C43385 /* Assets.xcassets in Resources */,
 				78F47F691DB3AC7C00C43385 /* MainMenu.xib in Resources */,
-				7836CBDB1DB7AB0700F72BF5 /* StreamSelectorController.xib in Resources */,
+				780F582D1DB7B9850062536D /* StreamSelectorController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,7 +146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				78F47F641DB3AC7C00C43385 /* AppDelegate.swift in Sources */,
-				7836CBDA1DB7AB0700F72BF5 /* StreamSelectorController.swift in Sources */,
+				780F582C1DB7B9850062536D /* StreamSelectorController.swift in Sources */,
 				789BE1741DB3FF5D003BC652 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
