@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="16B2548a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="16B2553a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
@@ -8,10 +8,12 @@
         <customObject id="-2" userLabel="File's Owner" customClass="MainViewController" customModule="Live_stream_checker" customModuleProvider="target">
             <connections>
                 <outlet property="button_add_streamer" destination="WDJ-MQ-4Ap" id="u7P-gJ-KbI"/>
-                <outlet property="button_check_now" destination="7Jy-Fk-QN3" id="rjI-Ax-ZfT"/>
                 <outlet property="button_del_streamer" destination="9R5-MV-QsO" id="wii-6P-aHb"/>
                 <outlet property="button_import_streamers" destination="nWY-qj-a11" id="VAj-XU-O1R"/>
                 <outlet property="button_quit" destination="KZE-xK-xtg" id="fYC-ZV-BYc"/>
+                <outlet property="oauth_label" destination="7mp-rw-jiO" id="wrh-EN-JV6"/>
+                <outlet property="oauth_text" destination="saU-lJ-LIx" id="HND-P8-cAp"/>
+                <outlet property="popup_button_app_open" destination="wCn-6c-F4O" id="3G0-eI-TCo"/>
                 <outlet property="streamer_list" destination="y5y-cw-Fws" id="kHF-T4-3bs"/>
                 <outlet property="text_add_streamer" destination="vSm-JW-x4d" id="BvS-Ej-dAK"/>
                 <outlet property="text_import_streamers" destination="kRI-AT-Bs9" id="8rp-Hs-HS8"/>
@@ -170,21 +172,66 @@
                         <action selector="quit_application:" target="-2" id="cRN-dv-yFp"/>
                     </connections>
                 </button>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Jy-Fk-QN3" userLabel="button_check_now">
-                    <rect key="frame" x="289" y="87" width="107" height="32"/>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iWj-h2-4Z0">
+                    <rect key="frame" x="206" y="121" width="122" height="17"/>
                     <animations/>
-                    <buttonCell key="cell" type="push" title="Check now" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="eum-LS-67e">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Open streams with:" id="xNY-cK-Q0h">
                         <font key="font" metaFont="system"/>
-                    </buttonCell>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wCn-6c-F4O">
+                    <rect key="frame" x="206" y="89" width="187" height="26"/>
+                    <animations/>
+                    <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="dnz-a3-nK3" id="jGk-YY-Ffv">
+                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="menu"/>
+                        <menu key="menu" id="Y1g-mn-GVQ">
+                            <items>
+                                <menuItem title="Item 1" state="on" id="dnz-a3-nK3"/>
+                                <menuItem title="Item 2" id="2H4-2C-tyX"/>
+                                <menuItem title="Item 3" id="ocV-Q9-Ahy"/>
+                            </items>
+                        </menu>
+                    </popUpButtonCell>
                     <connections>
-                        <action selector="get_online_stremers_now:" target="-2" id="QAK-Bo-rKG"/>
+                        <action selector="app_open_set_default:" target="-2" id="pfd-c3-8tl"/>
                     </connections>
-                </button>
+                </popUpButton>
+                <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="saU-lJ-LIx" customClass="ns_text_field" customModule="Live_stream_checker" customModuleProvider="target">
+                    <rect key="frame" x="259" y="60" width="131" height="22"/>
+                    <animations/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="ZJY-AO-3fl">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7mp-rw-jiO">
+                    <rect key="frame" x="208" y="63" width="45" height="17"/>
+                    <animations/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Token:" id="bNn-XH-Dmw">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
             </subviews>
             <animations/>
             <point key="canvasLocation" x="110" y="382"/>
         </customView>
+        <popUpButtonCell type="bevel" title="Item 1" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="bezel" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="4GQ-Wk-LnL" id="4lg-m2-do8">
+            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+            <font key="font" metaFont="smallSystem"/>
+            <menu key="menu" id="L3J-cP-Ha9">
+                <items>
+                    <menuItem title="Item 1" state="on" id="4GQ-Wk-LnL"/>
+                    <menuItem title="Item 2" id="gO0-Kh-iy6"/>
+                    <menuItem title="Item 3" id="lPE-Nc-eUe"/>
+                </items>
+            </menu>
+        </popUpButtonCell>
     </objects>
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>

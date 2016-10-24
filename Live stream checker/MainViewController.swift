@@ -25,9 +25,11 @@ class MainViewController: NSViewController {
     @IBOutlet var button_import_streamers: NSButton!
     @IBOutlet var text_import_streamers: NSTextField!
     @IBOutlet var text_check_interval: NSTextField!
-    @IBOutlet var button_check_now: NSButton!
     @IBOutlet var button_quit: NSButton!
-        
+    @IBOutlet var popup_button_app_open: NSPopUpButton!
+    @IBOutlet var oauth_label: NSTextField!
+    @IBOutlet var oauth_text: ns_text_field!
+    
     @IBAction func add_streamer_to_list(sender: AnyObject) {
         // When + button is pressed, add whatever is in the text field into the list
         // unless we just have an empty text.
@@ -74,7 +76,12 @@ class MainViewController: NSViewController {
     func reload_text_check_interval() {
         // text_check_interval.stringValue = String(check_interval)
     }
-
+    
+    @IBAction func oauth_text_save (sender: AnyObject) {
+        // Load the Oauth key for livestreamer from user defaults
+        defaults.setObject(oauth_text.stringValue, forKey: "livestreamer_oauth")        
+    }
+    
     @IBAction func import_streamer_list(sender: AnyObject) {
         // Extract user whose followed channels we are extracting
         let user = text_import_streamers.stringValue
@@ -114,7 +121,6 @@ class MainViewController: NSViewController {
                         saved_streamer_list.append(name)
                     }
                 }
-                
             } else {
                 // can't retrieve followed channels. probably invalid user?
                 // print("Invalid user specified.")
@@ -126,25 +132,7 @@ class MainViewController: NSViewController {
         reload_streamer_list()
         text_import_streamers.stringValue = ""
         // Send stdout to pipe and launch task
-        //for streamer in streamers {
-        
     }
-    
-    @IBAction func get_online_stremers_now(sender: AnyObject) {
-        self.button_check_now.enabled = false
-        return_online_streamers()
-        if came_online.count > 0 {
-            display_notification()
-        }
-        self.button_check_now.enabled = true
-    }
-    
-    func open_stream_selector() {
-        let alert = NSAlert()
-        alert.messageText = "Select stream to open:"
-
-    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -156,9 +144,39 @@ class MainViewController: NSViewController {
         
         // Load check_interval value into the text field
         reload_text_check_interval()
+        
+        // Load all the choices in popup_buttob
+        popup_button_app_open.removeAllItems()
+        popup_button_app_open.addItemsWithTitles(app_list)
+        popup_button_app_open.selectItemWithTitle((app_open != "") ? app_open : text_default_web_browser)
+        
+        // Load livestreamer oauth
+        oauth_text.stringValue = livestreamer_oauth
+        
+        // if default app is livestreamer, Load Livestreamer OAuth key, unhide elements
+        toggle_oauth_fields()
+    }
+    
+    func toggle_oauth_fields () {
+        if popup_button_app_open.titleOfSelectedItem == text_livestreamer {
+            oauth_label.hidden = false
+            oauth_text.hidden = false
+        } else {
+            oauth_label.hidden = true
+            oauth_text.hidden = true
+        }
+    }
+    
+    @IBAction func app_open_set_default (sender: AnyObject) {
+        // Set a new default app for opening streams whenver selection changes
+        app_open = popup_button_app_open.titleOfSelectedItem ?? ""
+        // print("Setting defualt app open to: "+app_open)
+        defaults.setObject(app_open, forKey: "app_open")
+        toggle_oauth_fields()
     }
 
     @IBAction func quit_application (sender: AnyObject) {
+        // Quit application
         NSApplication.sharedApplication().terminate(self)
     }
     
@@ -183,4 +201,15 @@ extension MainViewController : NSTableViewDelegate {
         }
         return nil
     }
+}
+
+class ns_text_field: NSTextField {
+    override func textDidChange(notification: NSNotification) {
+        defaults.setObject(self.stringValue, forKey: "livestreamer_oauth")
+        super.textDidChange(notification)
+    }
+}
+
+class ns_popup_button: NSPopUpButton {
+    // override func s
 }

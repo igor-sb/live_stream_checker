@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="16B2548a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="16B2553a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
@@ -7,6 +7,9 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="StreamSelectorController" customModule="Live_stream_checker" customModuleProvider="target">
             <connections>
+                <outlet property="stream_selector_cancel" destination="DM5-fH-Vtd" id="Qcf-Gy-TJ5"/>
+                <outlet property="stream_selector_launch" destination="5HE-oM-rvp" id="gtx-bE-CXs"/>
+                <outlet property="stream_selector_list" destination="h8e-mJ-OrI" id="AJg-0n-HnW"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -14,9 +17,8 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="191" height="230"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
             <view key="contentView" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="191" height="230"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -57,7 +59,7 @@
                                             </textFieldCell>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
-                                                <tableCellView id="4Mt-RL-X5H">
+                                                <tableCellView identifier="streamer_name_id" id="4Mt-RL-X5H">
                                                     <rect key="frame" x="1" y="1" width="144" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
@@ -102,6 +104,9 @@
                         <buttonCell key="cell" type="push" title="Launch" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Dr7-a8-NXy">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
+                            <connections>
+                                <action selector="launch_selected_stream:" target="-2" id="zZv-Zc-qoW"/>
+                            </connections>
                         </buttonCell>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DM5-fH-Vtd">
@@ -114,6 +119,9 @@
 Gw
 </string>
                         </buttonCell>
+                        <connections>
+                            <action selector="close_window:" target="-2" id="XQA-KC-a1k"/>
+                        </connections>
                     </button>
                 </subviews>
                 <animations/>
