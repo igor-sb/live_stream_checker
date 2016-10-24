@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		780F582C1DB7B9850062536D /* StreamSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780F582A1DB7B9850062536D /* StreamSelectorController.swift */; settings = {ASSET_TAGS = (); }; };
 		780F582D1DB7B9850062536D /* StreamSelectorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 780F582B1DB7B9850062536D /* StreamSelectorController.xib */; settings = {ASSET_TAGS = (); }; };
+		78206D131DBDD486000FCDD3 /* readme.md in Sources */ = {isa = PBXBuildFile; fileRef = 78206D121DBDD486000FCDD3 /* readme.md */; settings = {ASSET_TAGS = (); }; };
 		789BE1741DB3FF5D003BC652 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789BE1721DB3FF5D003BC652 /* MainViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		789BE1751DB3FF5D003BC652 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 789BE1731DB3FF5D003BC652 /* MainViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		78F47F641DB3AC7C00C43385 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F47F631DB3AC7C00C43385 /* AppDelegate.swift */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		780F582A1DB7B9850062536D /* StreamSelectorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamSelectorController.swift; sourceTree = "<group>"; };
 		780F582B1DB7B9850062536D /* StreamSelectorController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StreamSelectorController.xib; sourceTree = "<group>"; };
+		78206D121DBDD486000FCDD3 /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = SOURCE_ROOT; };
 		789BE1721DB3FF5D003BC652 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		789BE1731DB3FF5D003BC652 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		78F47F601DB3AC7C00C43385 /* Live stream checker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Live stream checker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,6 +64,7 @@
 			children = (
 				78F47F701DB3AF1F00C43385 /* Images.xcassets */,
 				78F47F631DB3AC7C00C43385 /* AppDelegate.swift */,
+				78206D121DBDD486000FCDD3 /* readme.md */,
 				789BE1721DB3FF5D003BC652 /* MainViewController.swift */,
 				789BE1731DB3FF5D003BC652 /* MainViewController.xib */,
 				78F47F651DB3AC7C00C43385 /* Assets.xcassets */,
@@ -147,6 +150,7 @@
 			files = (
 				78F47F641DB3AC7C00C43385 /* AppDelegate.swift in Sources */,
 				780F582C1DB7B9850062536D /* StreamSelectorController.swift in Sources */,
+				78206D131DBDD486000FCDD3 /* readme.md in Sources */,
 				789BE1741DB3FF5D003BC652 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
