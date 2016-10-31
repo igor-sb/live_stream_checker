@@ -12,7 +12,7 @@ Notification example:
 
 ## Download
 
-[Download link](Live stream checker.zip). (macOS 10.11+)
+[Download link](https://github.com/igor25/live_stream_checker/raw/master/Live%20stream%20checker.zip). (macOS 10.11+)
 
 Windows 10 version coming soon.
 
