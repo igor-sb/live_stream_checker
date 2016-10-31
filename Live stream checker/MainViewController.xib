@@ -11,6 +11,7 @@
                 <outlet property="button_del_streamer" destination="9R5-MV-QsO" id="wii-6P-aHb"/>
                 <outlet property="button_import_streamers" destination="nWY-qj-a11" id="VAj-XU-O1R"/>
                 <outlet property="button_quit" destination="KZE-xK-xtg" id="fYC-ZV-BYc"/>
+                <outlet property="check_sound" destination="79r-ZJ-qUp" id="7y3-mN-sy0"/>
                 <outlet property="oauth_label" destination="7mp-rw-jiO" id="wrh-EN-JV6"/>
                 <outlet property="oauth_text" destination="saU-lJ-LIx" id="HND-P8-cAp"/>
                 <outlet property="popup_button_app_open" destination="wCn-6c-F4O" id="3G0-eI-TCo"/>
@@ -208,8 +209,19 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="79r-ZJ-qUp">
+                    <rect key="frame" x="206" y="23" width="89" height="18"/>
+                    <animations/>
+                    <buttonCell key="cell" type="check" title="Play sound" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="iJn-UL-Hds">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="toggle_play_sound:" target="-2" id="5w8-LO-IKz"/>
+                    </connections>
+                </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7mp-rw-jiO">
-                    <rect key="frame" x="208" y="63" width="45" height="17"/>
+                    <rect key="frame" x="206" y="63" width="45" height="17"/>
                     <animations/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Token:" id="bNn-XH-Dmw">
                         <font key="font" metaFont="system"/>

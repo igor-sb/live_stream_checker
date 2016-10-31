@@ -26,7 +26,8 @@ let text_default_web_browser = "default web browser"
 let text_livestreamer = "livestreamer"
 var app_open: String = defaults.objectForKey("app_open") as? String ?? text_default_web_browser
 var app_list: [String] = [text_default_web_browser, text_livestreamer]
-var livestreamer_oauth = defaults.objectForKey("livestreamer_oauth") as? String ?? ""
+var livestreamer_oauth: String = defaults.objectForKey("livestreamer_oauth") as? String ?? ""
+var play_sound: Bool = defaults.objectForKey("play_sound") as? Bool ?? true
 
 // Bash script common arguments
 let bash_task_path = "/usr/bin/curl"
@@ -236,7 +237,7 @@ func display_notification() {
     // notification.userInfo = ["path" : fileName]
     
     // use the default sound for a notification
-    notification.soundName = NSUserNotificationDefaultSoundName
+    notification.soundName = play_sound ? NSUserNotificationDefaultSoundName : ""
     
     // if the user chooses to display the notification as an alert, give it an action button called "View"
     notification.hasActionButton = true

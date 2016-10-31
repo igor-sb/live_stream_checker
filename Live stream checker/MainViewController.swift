@@ -29,6 +29,7 @@ class MainViewController: NSViewController {
     @IBOutlet var popup_button_app_open: NSPopUpButton!
     @IBOutlet var oauth_label: NSTextField!
     @IBOutlet var oauth_text: ns_text_field!
+    @IBOutlet var check_sound: NSButton!
     
     @IBAction func add_streamer_to_list(sender: AnyObject) {
         // When + button is pressed, add whatever is in the text field into the list
@@ -155,6 +156,14 @@ class MainViewController: NSViewController {
         
         // if default app is livestreamer, Load Livestreamer OAuth key, unhide elements
         toggle_oauth_fields()
+        
+        // Toggle play sound check box if play sound is on
+        check_sound.enabled = play_sound ? true : false
+    }
+    
+    @IBAction func toggle_play_sound (sender: AnyObject) {
+        play_sound = check_sound.enabled ? true : false
+        defaults.setObject(play_sound, forKey: "play_sound")
     }
     
     func toggle_oauth_fields () {

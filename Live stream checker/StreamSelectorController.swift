@@ -22,6 +22,12 @@ class StreamSelectorController: NSWindowController, NSTableViewDataSource, NSTab
         self.close()
     }
     
+    @IBAction func check_stream_selector_launch (sender: AnyObject) {
+        // When user clicks around the list, check if anything is selected. If it's not, then the button 'Launch' needs to be disabled.
+        stream_selector_launch.enabled = stream_selector_list.numberOfSelectedRows > 0 ? true : false;
+        
+    }
+    
     @IBAction func close_window (sender: AnyObject) {
         self.close()
     }

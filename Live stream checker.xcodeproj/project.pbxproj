@@ -257,7 +257,7 @@
 				INFOPLIST_FILE = "Live stream checker/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.is.Live-stream-checker";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.is.live-stream-checker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -270,7 +270,7 @@
 				INFOPLIST_FILE = "Live stream checker/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.is.Live-stream-checker";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.is.live-stream-checker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
