@@ -3,9 +3,11 @@
 This is an application that notifies you whenever one of your favorite game streamers from Twitch (www.twitch.tv) comes online. If you click the notification, it will open the stream.
 
 Main window:
+
 ![](Images/main_interface.png)
 
 Notification example:
+
 ![](Images/online_notification.png)
 
 ## Download
