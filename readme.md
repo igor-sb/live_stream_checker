@@ -1,4 +1,4 @@
-# Live stream checker 0.9 for Twitch
+# Live stream checker 0.9 for Twitch [![GitHub release](https://img.shields.io/github/release/igor25/live_stream_checker.svg)](https://github.com/igor25/live_stream_checker/releases)
 
 This is an application that notifies you whenever one of your favorite game streamers from Twitch (www.twitch.tv) comes online. If you click the notification, it will open the stream.
 
