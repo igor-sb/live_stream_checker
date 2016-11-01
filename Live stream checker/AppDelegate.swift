@@ -152,7 +152,10 @@ func open_stream(url: String) {
 
 // Check streamers from saved_streamer_list for online status and return the online streamers
 func return_online_streamers() {
-    
+
+    // keep a list of streamers that are online
+    var streamers_online = [String]()
+
     let bash_task: NSTask! = NSTask()
     let pipe: NSPipe! = NSPipe()
     var is_running: Bool = true
@@ -205,13 +208,21 @@ func return_online_streamers() {
                         }
                     }
                 } else {
-                    // This streamer wasn't even in the dict. This can happen only during startup.
+                    // This streamer wasn't even in the dict. This can happen only during startup or if we deleted a streamer.
                     //print("Is this startup?")
                     came_online.append(streamer)
                 }
                 streamers_dict[streamer] = (streamer_display, streamer_url, true)
+                streamers_online.append(streamer)
                 //print("Stremer \(streamer_display) is now set to true.")
             }
+        } else {
+            // online_total == 0
+            
+        }
+        // Now set every streamer not in the json report as 'offline'
+        for streamer in streamers_online {
+            streamers_dict[streamer] = (streamers_dict[streamer]!.0, streamers_dict[streamer]!.1, false)
         }
     } catch {
         print("Error parsin JSON output: \(error)")
