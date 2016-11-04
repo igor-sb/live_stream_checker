@@ -14,7 +14,7 @@ class StreamSelectorController: NSWindowController, NSTableViewDataSource, NSTab
     @IBOutlet weak var stream_selector_cancel: NSButton!
     @IBOutlet weak var stream_selector_list: NSTableView!
     
-    @IBAction func launch_selected_stream (sender: AnyObject) {
+    @IBAction func launch_selected_stream (_ sender: AnyObject) {
         // Extract the URL of selected streamer from the dictionary and launch app
         let url = streamers_dict[came_online[stream_selector_list.selectedRow]]!.1
         open_stream(url)
@@ -22,23 +22,23 @@ class StreamSelectorController: NSWindowController, NSTableViewDataSource, NSTab
         self.close()
     }
     
-    @IBAction func check_stream_selector_launch (sender: AnyObject) {
+    @IBAction func check_stream_selector_launch (_ sender: AnyObject) {
         // When user clicks around the list, check if anything is selected. If it's not, then the button 'Launch' needs to be disabled.
-        stream_selector_launch.enabled = stream_selector_list.numberOfSelectedRows > 0 ? true : false;
+        stream_selector_launch.isEnabled = stream_selector_list.numberOfSelectedRows > 0 ? true : false;
         
     }
     
-    @IBAction func close_window (sender: AnyObject) {
+    @IBAction func close_window (_ sender: AnyObject) {
         self.close()
     }
      
-    func numberOfRowsInTableView(tableView: NSTableView) -> Int {
-        return came_online.count ?? 0
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        return came_online.count 
     }
     
-    func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let item = came_online[row]
-        if let cell = tableView.makeViewWithIdentifier("streamer_name_id", owner: nil) as?
+        if let cell = tableView.make(withIdentifier: "streamer_name_id", owner: nil) as?
             NSTableCellView {
                 cell.textField?.stringValue = item
                 return cell
@@ -49,8 +49,8 @@ class StreamSelectorController: NSWindowController, NSTableViewDataSource, NSTab
     override func windowDidLoad() {
         super.windowDidLoad()
         // Set a delegate and data source for the streamer list
-        stream_selector_list.setDelegate(self)
-        stream_selector_list.setDataSource(self)
+        stream_selector_list.delegate = self
+        stream_selector_list.dataSource = self
 
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     }

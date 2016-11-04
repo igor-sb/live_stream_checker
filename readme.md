@@ -37,4 +37,4 @@ To check streamer status this app launches a Bash `curl` command to query Twitch
 - Check how the application windows look on a retina screen.
 
 ---
-Written with Xcode 7.0 / Swift 2.0 on macOS 10.12.1 Public Beta.
+Written with Xcode 8.1 / Swift 3.0 on macOS 10.12.1
