@@ -12,6 +12,8 @@ Notification example:
 
 ## Download
 
+(still few bugs here and there... testing / debugging it these days)
+
 [Download link](https://github.com/igor25/live_stream_checker/raw/master/Live%20stream%20checker.zip). (macOS 10.11+)
 
 Windows 10 version coming soon.

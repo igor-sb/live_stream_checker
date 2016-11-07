@@ -81,7 +81,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         if came_online.count > 0 {
             display_notification()
         }
-        print("Online check performed.")
+        //print("Online check performed.")
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -185,48 +185,57 @@ func return_online_streamers() {
     // Parse Twitch JSON output
     do {
         let json = try JSONSerialization.jsonObject(with: output, options: []) as! [String: AnyObject]
-        let online_total = json["_total"] as! Int
-        // If there is at least one person online collect the names
-        if online_total > 0 {
-            let json_array = json["streams"] as! [AnyObject]
-            for i in 0..<online_total {
-                let streamer_metadata = json_array[i] as! [String: AnyObject]
-                let channel_metadata = streamer_metadata["channel"] as! [String: AnyObject]
-                let streamer = channel_metadata["name"] as! String
-                let streamer_display = channel_metadata["display_name"] as! String
-                let streamer_url = channel_metadata["url"] as! String
-                if let streamer_data = streamers_dict[streamer] {
-                    if streamer_data.2 == false {
-                        came_online.append(streamer)
+        if (json["_total"] != nil) {
+            let online_total = json["_total"] as! Int
+            // If there is at least one person online collect the names
+            if online_total > 0 {
+                let json_array = json["streams"] as! [AnyObject]
+                for i in 0..<online_total {
+                    let streamer_metadata = json_array[i] as! [String: AnyObject]
+                    let channel_metadata = streamer_metadata["channel"] as! [String: AnyObject]
+                    let streamer = channel_metadata["name"] as! String
+                    let streamer_display = channel_metadata["display_name"] as! String
+                    let streamer_url = channel_metadata["url"] as! String
+                    if let streamer_data = streamers_dict[streamer] {
+                        if streamer_data.2 == false {
+                            came_online.append(streamer)
+                        } else {
+                            // this streamer is online and was online also on last check
+                            //if let came_online_id = came_online.index(of: streamer) {
+                            //    came_online.remove(at: came_online_id)
+                            //}
+                        }
                     } else {
-                        // this streamer is online and was online also on last check
-                        //if let came_online_id = came_online.index(of: streamer) {
-                        //    came_online.remove(at: came_online_id)
-                        //}
+                        // This streamer wasn't even in the dict. This can happen only during startup or if we deleted a streamer.
+                        //print("Is this startup?")
+                        came_online.append(streamer)
                     }
-                } else {
-                    // This streamer wasn't even in the dict. This can happen only during startup or if we deleted a streamer.
-                    //print("Is this startup?")
-                    came_online.append(streamer)
+                    streamers_dict[streamer] = (streamer_display, streamer_url, true)
+                    // streamers_online.append(streamer)
+                    // print("Stremer \(streamer_display) is now set to true.")
                 }
-                streamers_dict[streamer] = (streamer_display, streamer_url, true)
-                // streamers_online.append(streamer)
-                print("Stremer \(streamer_display) is now set to true.")
+            } else {
+                // online_total == 0
+                print("Noone is online.")
             }
-        } else {
-            // online_total == 0
-            print("Noone is online.")
-        }
-        // Now set every streamer not in the json report as 'offline'
-        for (streamer, _) in streamers_dict {
-            if came_online.contains(streamer) {
-                streamers_dict[streamer]!.2 = true
+            // Now set every streamer not in the json report as 'offline'
+            for (streamer, _) in streamers_dict {
+                if came_online.contains(streamer) {
+                    streamers_dict[streamer]!.2 = true
+                }
             }
+        } // end if json['total'] != nil (if this isn't true twitch returned an error
+        else {
+            // catch Twitch error message here
+            let output_text = String(data: output, encoding: String.Encoding.utf8)
+            print("Twitch returned error.")
+            print("--- Output pipe ---")
+            print(output_text!)
         }
     } catch {
         print("Error parsin JSON output: \(error)")
     }
-    print("Streamer dict: "+String(describing: streamers_dict))
+    // print("Streamer dict: "+String(describing: streamers_dict))
 }
 
 func display_notification() {
