@@ -216,7 +216,7 @@ func return_online_streamers() {
                 }
             } else {
                 // online_total == 0
-                print("Noone is online.")
+                // print("Noone is online.")
             }
             // Now set every streamer not in the json report as 'offline'
             for (streamer, _) in streamers_dict {
