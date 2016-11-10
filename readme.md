@@ -1,4 +1,4 @@
-# Live stream checker 0.9 for Twitch [![GitHub release](https://img.shields.io/github/release/igor25/live_stream_checker.svg)](https://github.com/igor25/live_stream_checker/releases)
+# Live stream checker for Twitch [![GitHub release](https://img.shields.io/github/release/igor25/live_stream_checker.svg)](https://github.com/igor25/live_stream_checker/releases)
 
 This is an application that notifies you whenever one of your favorite game streamers from Twitch (www.twitch.tv) comes online. If you click the notification, it will open the stream.
 
@@ -27,8 +27,6 @@ If you click the online notification then the stream opens either in the default
 To use [livestreamer](http://livestreamer.tanuki.se) you need to register it with Twitch and obtain your authentication token.
 
 ## Technical details
-
-This is my first Swift application!
 
 The application checks the status of all streamers on the list every minute. User settings are saved using macOS Preferences (in the .plist file `~/Library/Preferences/com.is.Live-stream-checker`). If, for some reason, you need to edit this file, you can use macOS command `defaults`, e.g. `defaults read com.is.live-stream-checker` to see what can be changed and `defaults write` to change values.
 
