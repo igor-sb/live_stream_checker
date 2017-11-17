@@ -5,6 +5,9 @@
 //  Created by Igor Segota on 10/16/16.
 //  Copyright © 2016 Igor Segota. All rights reserved.
 //
+// To do: When the computer wakes up from sleep, this crashes
+//        when clicking on streamer notfication. Check when notification
+//        was created or something and prevent clicking.
 
 import Cocoa
 
@@ -39,14 +42,14 @@ let bash_task_pars = ["-H", "Client-ID: jk0r7xgh72b2g2e7d0vidk4uvd85xu",
 class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
 
     // Initialize status bar application mode and popover window
-    let statusItem = NSStatusBar.system().statusItem(withLength: -2)
+    let statusItem = NSStatusBar.system.statusItem(withLength: -2)
     let popover = NSPopover()
     var stream_select: StreamSelectorController!
 
     @IBOutlet weak var window: NSWindow!
     
     // variables for bash tasks
-    dynamic var is_running = false
+    @objc dynamic var is_running = false
     var pipe: Pipe!
     var bash_task: Process!    
 
@@ -55,14 +58,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         
         // Select the image for status bar and call toggle_popover
         if let button = statusItem.button {
-            button.image = NSImage(named: "StatusBarButtonImage")
+            button.image = NSImage(named: NSImage.Name(rawValue: "StatusBarButtonImage"))
             button.action = #selector(AppDelegate.toggle_popover(_:))
         }
         
         // Initialize main popover window
-        popover.contentViewController = MainViewController(nibName: "MainViewController", bundle: nil)
+        popover.contentViewController = MainViewController(nibName: NSNib.Name(rawValue: "MainViewController"), bundle: nil)
         // This hides the popover when we click somewhere outside of it
-        popover.behavior = NSPopoverBehavior.transient
+        popover.behavior = NSPopover.Behavior.transient
         
         // Delegate for Notification center
         NSUserNotificationCenter.default.delegate = self
@@ -75,7 +78,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
 
     }
     
-    func check_online_and_notify() {
+    @objc func check_online_and_notify() {
         // Check for online streamers and send notification if anyone new came online
         return_online_streamers()
         if came_online.count > 0 {
@@ -99,7 +102,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     func close_popover(_ sender: AnyObject?) {
         popover.performClose(sender)
     }
-    func toggle_popover(_ sender: AnyObject?) {
+    @objc func toggle_popover(_ sender: AnyObject?) {
         if popover.isShown {
             close_popover(sender)
         } else {
@@ -117,10 +120,19 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         // Get the path from the userInfo dictionary of the User Notification
         // let path = notification.userInfo!["path"] as! String
         
+        // Check JSON output here and if it's not good, don't open stream.
+        // Looks like this happens when computer wakes from sleep.
+        // This also crashes if we click notification from the notification bar.
+        //
+        //Error parsin JSON output: Error Domain=NSCocoaErrorDomain Code=3840 "No value." UserInfo={NSDebugDescription=No value.}
+        //Error parsin JSON output: Error Domain=NSCocoaErrorDomain Code=3840 "No value." UserInfo={NSDebugDescription=No value.}
+        //fatal error: Index out of range
+        //2017-01-02 00:56:55.131282 Live stream checker[50815:1801692] fatal error: Index out of range
+        
         // Open the file at the path
         if came_online.count > 1 {
             // select stream to open
-            stream_select = StreamSelectorController(windowNibName: "StreamSelectorController")
+            stream_select = StreamSelectorController(windowNibName: NSNib.Name(rawValue: "StreamSelectorController"))
             stream_select.showWindow(nil)
         } else {
             // just one streamer is online. open that one
@@ -135,7 +147,7 @@ func open_stream(_ url: String) {
     // Opens the stream from 'url'
     switch app_open {
     case text_default_web_browser:
-        NSWorkspace.shared().open(URL(string: url)!)
+        NSWorkspace.shared.open(URL(string: url)!)
     case text_livestreamer:
         // launch livestreamer using NSTask():
         let ls_task: Process! = Process()

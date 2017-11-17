@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -12,7 +12,7 @@
                 <outlet property="button_del_streamer" destination="9R5-MV-QsO" id="wii-6P-aHb"/>
                 <outlet property="button_import_streamers" destination="nWY-qj-a11" id="VAj-XU-O1R"/>
                 <outlet property="button_quit" destination="KZE-xK-xtg" id="fYC-ZV-BYc"/>
-                <outlet property="check_sound" destination="79r-ZJ-qUp" id="7y3-mN-sy0"/>
+                <outlet property="check_sound" destination="79r-ZJ-qUp" id="ReV-K4-YrW"/>
                 <outlet property="oauth_label" destination="7mp-rw-jiO" id="wrh-EN-JV6"/>
                 <outlet property="oauth_text" destination="saU-lJ-LIx" id="HND-P8-cAp"/>
                 <outlet property="popup_button_app_open" destination="wCn-6c-F4O" id="3G0-eI-TCo"/>
@@ -212,7 +212,7 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="toggle_play_sound:" target="-2" id="fHl-Sd-XxM"/>
+                        <action selector="toggle_play_sound:" target="-2" id="bKA-XF-30M"/>
                     </connections>
                 </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7mp-rw-jiO">

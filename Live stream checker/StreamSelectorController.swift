@@ -38,7 +38,7 @@ class StreamSelectorController: NSWindowController, NSTableViewDataSource, NSTab
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let item = came_online[row]
-        if let cell = tableView.make(withIdentifier: "streamer_name_id", owner: nil) as?
+        if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "streamer_name_id"), owner: nil) as?
             NSTableCellView {
                 cell.textField?.stringValue = item
                 return cell

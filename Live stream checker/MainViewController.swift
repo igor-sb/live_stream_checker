@@ -12,7 +12,7 @@ import Cocoa
 class MainViewController: NSViewController {
 
     // variables for bash tasks
-    dynamic var is_running = false
+    @objc dynamic var is_running = false
     var pipe: Pipe!
     var bash_task: Process!
     var new_window_controller: StreamSelectorController!
@@ -160,11 +160,11 @@ class MainViewController: NSViewController {
         toggle_oauth_fields()
         
         // Toggle play sound check box if play sound is on
-        check_sound.state = play_sound ? NSOnState : NSOffState
+        check_sound.state = play_sound ? .on : .off
     }
     
     @IBAction func toggle_play_sound (_ sender: AnyObject) {
-        play_sound = check_sound.state == NSOnState ? true : false
+        play_sound = check_sound.state == .on ? true : false
         defaults.set(play_sound, forKey: "play_sound")
     }
     
@@ -188,7 +188,7 @@ class MainViewController: NSViewController {
 
     @IBAction func quit_application (_ sender: AnyObject) {
         // Quit application
-        NSApplication.shared().terminate(self)
+        NSApplication.shared.terminate(self)
     }
     
 }
@@ -203,11 +203,11 @@ extension MainViewController : NSTableViewDataSource {
 extension MainViewController : NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
             let item = saved_streamer_list[row]
-            if let cell = tableView.make(withIdentifier: "streamer_name_id", owner: nil) as?
+            if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "streamer_name_id"), owner: nil) as?
                 NSTableCellView {
                     cell.textField?.stringValue = item
                     // There's a bug with table view and NSPopover that screws the background color in tableview. This fixes that.
-                    cell.appearance = NSAppearance.init(named: NSAppearanceNameAqua)
+                    cell.appearance = NSAppearance.init(named: NSAppearance.Name.aqua)
                     return cell
         }
         return nil
