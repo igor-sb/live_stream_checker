@@ -4,7 +4,7 @@ This is an application that notifies you whenever one of your favorite game stre
 
 Main window:
 
-![](Images/main_interface.png)
+![](Images/main_interface.png =874x540)
 
 Notification example:
 
