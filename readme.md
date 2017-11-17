@@ -8,7 +8,7 @@ Main window:
 
 Notification example:
 
-![](Images/online_notification.png)
+<img src="Images/online_notification.png" width="50%" height="50%">
 
 ## Installation
 
