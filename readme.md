@@ -10,13 +10,11 @@ Notification example:
 
 ![](Images/online_notification.png)
 
-## Download
+## Installation
 
-(still few bugs here and there... testing / debugging it these days)
+[Download link](https://github.com/igor25/live_stream_checker/releases/download/1.0/Live.stream.checker.app.zip) (macOS 10.11+)
 
-[Download link](https://github.com/igor25/live_stream_checker/releases/download/v0.93/Live.stream.checker.app.zip) (macOS 10.11+)
-
-Windows 10 version coming soon.
+Unzip the file then simply copy it to the Application folder on your Mac and run. 
 
 ## Description
 
@@ -32,9 +30,3 @@ The application checks the status of all streamers on the list every minute. Use
 
 To check streamer status this app launches a Bash `curl` command to query Twitch API as described [here](https://github.com/justintv/Twitch-API), which returns streamer information in a JSON format.
 
-## To do
-
-- Check how the application windows look on a retina screen.
-
----
-Written with Xcode 8.1 / Swift 3.0 on macOS 10.12.1
