@@ -58,12 +58,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         
         // Select the image for status bar and call toggle_popover
         if let button = statusItem.button {
-            button.image = NSImage(named: NSImage.Name(rawValue: "StatusBarButtonImage"))
+            button.image = NSImage(named: "StatusBarButtonImage")
             button.action = #selector(AppDelegate.toggle_popover(_:))
         }
         
         // Initialize main popover window
-        popover.contentViewController = MainViewController(nibName: NSNib.Name(rawValue: "MainViewController"), bundle: nil)
+        popover.contentViewController = MainViewController(nibName: "MainViewController", bundle: nil)
         // This hides the popover when we click somewhere outside of it
         popover.behavior = NSPopover.Behavior.transient
         
@@ -132,7 +132,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         // Open the file at the path
         if came_online.count > 1 {
             // select stream to open
-            stream_select = StreamSelectorController(windowNibName: NSNib.Name(rawValue: "StreamSelectorController"))
+            stream_select = StreamSelectorController(windowNibName: "StreamSelectorController")
             stream_select.showWindow(nil)
         } else {
             // just one streamer is online. open that one

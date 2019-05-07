@@ -207,7 +207,7 @@ extension MainViewController : NSTableViewDelegate {
                 NSTableCellView {
                     cell.textField?.stringValue = item
                     // There's a bug with table view and NSPopover that screws the background color in tableview. This fixes that.
-                    cell.appearance = NSAppearance.init(named: NSAppearance.Name.aqua)
+                    //cell.appearance = NSAppearance.init(named: NSAppearance.Name.aqua)
                     return cell
         }
         return nil
