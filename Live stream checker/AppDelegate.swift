@@ -29,13 +29,17 @@ let text_default_web_browser = "default web browser"
 let text_livestreamer = "streamlink"
 var app_open: String = defaults.object(forKey: "app_open") as? String ?? text_default_web_browser
 var app_list: [String] = [text_default_web_browser, text_livestreamer]
-var livestreamer_oauth: String = defaults.object(forKey: "livestreamer_oauth") as? String ?? ""
+// var livestreamer_oauth: String = defaults.object(forKey: "livestreamer_oauth") as? String ?? ""
 var play_sound: Bool = defaults.object(forKey: "play_sound") as? Bool ?? true
 
 // Bash script common arguments, Twitch Cliend-ID for this app and version
 let bash_task_path = "/usr/bin/curl"
 let bash_task_pars = ["-H", "Client-ID: jk0r7xgh72b2g2e7d0vidk4uvd85xu",
     "-H", "Accept: application/vnd.twitchtv.v3+json"]
+let livestreamer_path_default = "/usr/bin/env/streamlink"
+// THis used to be an OAUTH string for livestreamer, now PATH string for streamlink
+// since it doesn't need an OAUTH.
+var livestreamer_oauth: String = defaults.object(forKey: "livestreamer_oauth") as? String ?? livestreamer_path_default
 
 // Main application delegate
 @NSApplicationMain
@@ -150,11 +154,16 @@ func open_stream(_ url: String) {
         NSWorkspace.shared.open(URL(string: url)!)
     case text_livestreamer:
         // launch livestreamer using NSTask():
-        let ls_task: Process! = Process()
-        ls_task.launchPath = "/usr/local/bin/streamlink"
-        ls_task.arguments = ["--twitch-oauth-token", livestreamer_oauth, url, "best"]
-        ls_task.launch()
-        // ls_task.
+        // check if streamlink is installed
+        let fileManager = FileManager.default
+        if fileManager.fileExists(atPath: livestreamer_oauth) {
+            // print("FILE AVAILABLE")
+            let ls_task: Process! = Process()
+            ls_task.launchPath = livestreamer_oauth
+            // ls_task.arguments = ["--twitch-oauth-token", livestreamer_oauth, url, "best"]
+            ls_task.arguments = [url, "best"]
+            ls_task.launch()
+        }
     default:
         print("We should never have an undefined default open app.")
     }
