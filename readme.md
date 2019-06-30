@@ -20,9 +20,9 @@ Unzip the file then simply copy it to the Application folder on your Mac and run
 
 You can add streamers individually by typing the channel name in the text field below the list and pressing the + button. You can import the list of streamers that are followed by some user by typing that users name in the text field under 'Import followed streams from' and pressing the Import button.
 
-If you click the online notification then the stream opens either in the default browser or using [livestreamer](http://livestreamer.tanuki.se). If more than one streamer comes online on the next check, a stream selector dialog pops so you can choose which stream to launch.
+If you click the online notification then the stream opens either in the default browser or using [streamlink](https://streamlink.github.io/). If more than one streamer comes online on the next check, a stream selector dialog pops so you can choose which stream to launch.
 
-To use [livestreamer](http://livestreamer.tanuki.se) you need to register it with Twitch and obtain your authentication token.
+To use [streamlink](https://streamlink.github.io/) you need to register it with Twitch and obtain your authentication token.
 
 ## Technical details
 

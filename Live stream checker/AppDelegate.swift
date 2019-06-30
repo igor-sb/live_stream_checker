@@ -26,7 +26,7 @@ var check_interval: Int = defaults.object(forKey: "check_interval") as? Int ?? 1
 
 // Stream application. What application to run when the stream is open?
 let text_default_web_browser = "default web browser"
-let text_livestreamer = "livestreamer"
+let text_livestreamer = "streamlink"
 var app_open: String = defaults.object(forKey: "app_open") as? String ?? text_default_web_browser
 var app_list: [String] = [text_default_web_browser, text_livestreamer]
 var livestreamer_oauth: String = defaults.object(forKey: "livestreamer_oauth") as? String ?? ""
@@ -151,7 +151,7 @@ func open_stream(_ url: String) {
     case text_livestreamer:
         // launch livestreamer using NSTask():
         let ls_task: Process! = Process()
-        ls_task.launchPath = "/usr/local/bin/livestreamer"
+        ls_task.launchPath = "/usr/local/bin/streamlink"
         ls_task.arguments = ["--twitch-oauth-token", livestreamer_oauth, url, "best"]
         ls_task.launch()
         // ls_task.
