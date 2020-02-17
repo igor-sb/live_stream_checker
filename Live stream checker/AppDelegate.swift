@@ -35,7 +35,7 @@ var play_sound: Bool = defaults.object(forKey: "play_sound") as? Bool ?? true
 // Bash script common arguments, Twitch Cliend-ID for this app and version
 let bash_task_path = "/usr/bin/curl"
 let bash_task_pars = ["-H", "Client-ID: jk0r7xgh72b2g2e7d0vidk4uvd85xu",
-    "-H", "Accept: application/vnd.twitchtv.v3+json"]
+    "-H", "Accept: application/vnd.twitchtv.v5+json"]
 let livestreamer_path_default = "/usr/bin/env/streamlink"
 // THis used to be an OAUTH string for livestreamer, now PATH string for streamlink
 // since it doesn't need an OAUTH.
@@ -194,7 +194,7 @@ func return_online_streamers() {
     
     // Send stdout to pipe and launch task
     // for streamer in streamers {
-    bash_task.arguments?.append("https://api.twitch.tv/kraken/streams?channel=" + saved_streamer_list.joined(separator: ","))
+    bash_task.arguments?.append("https://api.twitch.tv/helix/streams?user_login=" + saved_streamer_list.joined(separator: "&user_login="))
     bash_task.standardOutput = pipe
     bash_task.standardError = nil
     bash_task.launch()
@@ -206,38 +206,36 @@ func return_online_streamers() {
     // Parse Twitch JSON output
     do {
         let json = try JSONSerialization.jsonObject(with: output, options: []) as! [String: AnyObject]
-        if (json["_total"] != nil) {
-            let online_total = json["_total"] as! Int
+        if (json["data"] != nil) {
+            let json_array = json["data"] as! [Any]
+            // let online_total = json["_total"] as! Int
+            let online_total = json["data"]?.count as! Int
             // If there is at least one person online collect the names
-            if online_total > 0 {
-                let json_array = json["streams"] as! [AnyObject]
-                for i in 0..<online_total {
-                    let streamer_metadata = json_array[i] as! [String: AnyObject]
-                    let channel_metadata = streamer_metadata["channel"] as! [String: AnyObject]
-                    let streamer = channel_metadata["name"] as! String
-                    let streamer_display = channel_metadata["display_name"] as! String
-                    let streamer_url = channel_metadata["url"] as! String
-                    if let streamer_data = streamers_dict[streamer] {
-                        if streamer_data.2 == false {
-                            came_online.append(streamer)
-                        } else {
-                            // this streamer is online and was online also on last check
-                            //if let came_online_id = came_online.index(of: streamer) {
-                            //    came_online.remove(at: came_online_id)
-                            //}
-                        }
+            // let json_array = json["streams"] as! [AnyObject]
+            for i in 0..<online_total {
+                let stream_metadata = json_array[i] as! [String: AnyObject]
+                // let channel_metadata = streamer_metadata["channel"] as! [String: AnyObject]
+                let streamer_name = stream_metadata["user_name"] as! String
+                let streamer_url = "https://www.twitch.tv/" + streamer_name
+                // let streamer_display = channel_metadata["display_name"] as! String
+                // let streamer_url = channel_metadata["url"] as! String
+                if let streamer_data = streamers_dict[streamer_name] {
+                    if streamer_data.2 == false {
+                        came_online.append(streamer_name)
                     } else {
-                        // This streamer wasn't even in the dict. This can happen only during startup or if we deleted a streamer.
-                        //print("Is this startup?")
-                        came_online.append(streamer)
+                        // this streamer is online and was online also on last check
+                        //if let came_online_id = came_online.index(of: streamer) {
+                        //    came_online.remove(at: came_online_id)
+                        //}
                     }
-                    streamers_dict[streamer] = (streamer_display, streamer_url, true)
-                    // streamers_online.append(streamer)
-                    // print("Stremer \(streamer_display) is now set to true.")
+                } else {
+                    // This streamer wasn't even in the dict. This can happen only during startup or if we deleted a streamer.
+                    //print("Is this startup?")
+                    came_online.append(streamer_name)
                 }
-            } else {
-                // online_total == 0
-                // print("Noone is online.")
+                streamers_dict[streamer_name] = (streamer_name, streamer_url, true)
+                // streamers_online.append(streamer)
+                // print("Stremer \(streamer_display) is now set to true.")
             }
             // Now set every streamer not in the json report as 'offline'
             for (streamer, _) in streamers_dict {
