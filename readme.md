@@ -12,7 +12,7 @@ Notification example:
 
 ## Installation
 
-[Download link](https://github.com/igor25/live_stream_checker/releases/download/1.0/Live.stream.checker.app.zip) (macOS 10.11+)
+[Download link](https://github.com/igor25/live_stream_checker/releases/download/v1.1/Live.stream.checker.app.zip) (macOS 10.11+)
 
 Unzip the file then simply copy it to the Application folder on your Mac and run.
 
